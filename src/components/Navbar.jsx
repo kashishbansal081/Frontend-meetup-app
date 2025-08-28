@@ -1,5 +1,6 @@
 import logo from "../images/mettup.png";
 
+
 export default function Navbar() {
  
   return (

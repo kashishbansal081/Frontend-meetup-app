@@ -31,7 +31,7 @@ export default function CardContainer({ dropDownFilter, searchByFilter }) {
 
   
 
-  return (
+  return filteredEvents ? (
     <div className="container mt-2">
       <div className="row">
         {filteredEvents?.map((event) => (
@@ -39,5 +39,7 @@ export default function CardContainer({ dropDownFilter, searchByFilter }) {
         ))}
       </div>
     </div>
-  );
+  ) : (
+    loading && <h4>Loading...</h4>
+  )
 }
