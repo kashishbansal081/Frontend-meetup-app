@@ -1,19 +1,23 @@
 import useFetch from "../useFetch";
 import Navbar from "./Navbar";
 import { useParams } from "react-router-dom";
-import { FaRegClock , FaDollarSign , FaMapMarkerAlt  } from "react-icons/fa";
+import { FaRegClock, FaDollarSign, FaMapMarkerAlt } from "react-icons/fa";
 
 export default function CardDetail() {
   const { cardId } = useParams();
   const { data, loading, error } = useFetch(
     `https://backend-meetup-manager.vercel.app/events/${cardId}`
   );
+
+  function dateConvertToIST(date) {
+    return new Date(date).toLocaleString("en-IN");
+  }
   // console.log(data);
 
   if (data) {
     return (
       <>
-        <Navbar/>
+        <Navbar />
         <div className="container">
           <hr className="mt-0" />
 
@@ -46,9 +50,7 @@ export default function CardDetail() {
                 <h4>Event Tags:</h4>
                 {data.eventTags?.map((tag) => {
                   return (
-                    <span
-                      className="badge bg-danger me-2 mb-2 px-3 py-2 fw-medium"
-                    >
+                    <span className="badge bg-danger me-2 mb-2 px-3 py-2 fw-medium">
                       {tag}
                     </span>
                   );
@@ -58,20 +60,23 @@ export default function CardDetail() {
 
             {/* Right Hand Size Section */}
             <div className="col-md-4  ">
-
               <section className="priceSection mx-auto ">
                 <div className="bg-white border rounded p-3">
                   <p className="mb-2">
                     <FaRegClock size={20} color="black" className="me-1" />
-                    {data.eventStartTime} to {data.eventEndTime}
+                    {dateConvertToIST(data.eventStartTime)} to{" "}
+                    {dateConvertToIST(data.eventEndTime)}
                   </p>
-                  <p className="mb-2"> <FaMapMarkerAlt className="me-1" />
+                  <p className="mb-2">
+                    {" "}
+                    <FaMapMarkerAlt className="me-1" />
                     {data.eventLocation.venue}, {data.eventLocation.address},{" "}
                     {data.eventLocation.city}{" "}
                   </p>
                   <p>
-                     <FaDollarSign className="me-1"/>
-                    {data.eventPrice}</p>
+                    <FaDollarSign className="me-1" />
+                    {data.eventPrice}
+                  </p>
                 </div>
                 <div className="speakers mt-3">
                   <h4>Speakers: ({data.speakers.length})</h4>

@@ -4,6 +4,7 @@ import CardContainer from "./components/CardContainer";
 import { useState } from "react";
 import SearchButton from "./components/SearchButton";
 
+
 function App() {
   const [filterEvent, setFilterEvent] = useState("both");
   const [filterBySearch, setFilterBySearch] = useState("");
