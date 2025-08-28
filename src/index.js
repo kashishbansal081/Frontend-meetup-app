@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./app.css"
 import { createBrowserRouter,RouterProvider } from "react-router-dom";
 import CardDetail from "./components/CardDetail";
 
